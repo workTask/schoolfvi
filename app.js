@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 //connect .hbs file
 app.set('view engine', 'hbs')
-//add pages and use pages
 
+//add pages and use pages
 app.get('/', (req,res) => {
    res.render('index')
 })
