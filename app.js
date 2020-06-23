@@ -10,7 +10,7 @@ const publicDir = path.join(__dirname, './public');
 
 //for dir
 const app = express();
-
+//
 
 
 app.use(express.static(publicDir));
