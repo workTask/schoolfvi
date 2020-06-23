@@ -22,33 +22,35 @@ app.use(bodyParser.urlencoded({extended:true}));
 //connect .hbs file
 app.set('view engine', 'hbs');
 ///
-app.get('/users', db.getUsers)
-app.get('/users/:id', db.getUserById)
-app.post('/users', db.addUser)
-app.put('/users/:id', db.updateUser)
-app.delete('/users/:id', db.deleteUser)
+app.get('/users', db.getUsers);
+app.get('/users/:id', db.getUserById);
+app.post('/users', db.addUser);
+app.put('/users/:id', db.updateUser);
+app.delete('/users/:id', db.deleteUser);
 
 
 
 //add pages and use pages
 app.get('/', (req,res) => {
   res.render('index')
-})
+});
 app.get('/register', (req,res) => {
    res.render('register')
-}) 
+}) ;
 app.post('/register', (req,res) => {
 
    //console.log(req.body)
+   res.render('login')
+   //res.send('Good job')
    //console.log(res.body)
-}) 
+}) ;
 app.get('/login', (req,res) => {
     res.render('login')
-})  
+})  ;
 app.post('/login', (req,res) => {
     console.log(req.body)
-})  
+}) ; 
 app.listen(port, (req, res)=>{
  console.log("Server start")
-})
+});
 //************************************* */
