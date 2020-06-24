@@ -28,10 +28,13 @@
             <div class="card">
                 <div class="card-header">
                     Register form
+                    {{#if message}}
+                          <h6 style="color: orangered;">{{message}}</h6>
+                     {{/if}}
                 </div>
                 <div class="card-body">
                      <!--add form this link https://getbootstrap.com/docs/4.5/components/forms/-->
-                        <form method="POST">
+                        <form  action="auth/register" method="POST">
                             <!--name group-->
                             <div class="form-group">
                                 <label for="fname">First name</label>

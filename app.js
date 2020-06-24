@@ -2,8 +2,7 @@ const express = require("express");
 const bodyParser=require("body-parser");
 //for dir
 const path = require("path");
-//db
-const db = require('./user_db');
+
 
 const port= process.env.PORT || 5000;
 const publicDir = path.join(__dirname, './public');
@@ -19,37 +18,19 @@ app.use(express.static(publicDir));
 //************ */
 app.use(bodyParser.urlencoded({extended:true}));
 
+app.use('/', require('./routes/pages'));
+app.use('/auth', require('./routes/auth'));
+
 //connect .hbs file
 app.set('view engine', 'hbs');
 ///
-app.get('/users', db.getUsers);
-app.get('/users/:id', db.getUserById);
-app.post('/users', db.addUser);
-app.put('/users/:id', db.updateUser);
-app.delete('/users/:id', db.deleteUser);
+//app.post('/users', db.addUser);
 
 
 
-//add pages and use pages
-app.get('/', (req,res) => {
-  res.render('index')
-});
-app.get('/register', (req,res) => {
-   res.render('register')
-}) ;
-app.post('/register', (req,res) => {
 
-   //console.log(req.body)
-   res.render('login')
-   //res.send('Good job')
-   //console.log(res.body)
-}) ;
-app.get('/login', (req,res) => {
-    res.render('login')
-})  ;
-app.post('/login', (req,res) => {
-    console.log(req.body)
-}) ; 
+
+
 app.listen(port, (req, res)=>{
  console.log("Server start")
 });
