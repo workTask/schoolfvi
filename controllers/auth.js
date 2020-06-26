@@ -1,5 +1,7 @@
 
 const Pool = require('pg').Pool
+const jwt = require ('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 
 const pool = new Pool({
@@ -25,19 +27,19 @@ exports.register = (req,res) => {
       console.log('results length ' , results.rows.length);
 
       if (results.rows.length > 0){
-        
-        return res.render('register', {message: '*Цей email вже використовується'});
+        return res.render('register', {message: '*Цей email вже використовується'}); 
 
-      } 
-       if (password !== cpassword){
-          return res.render('register', {message: '*Паролі не збігаються'});
-      }
+      }else if (password !== cpassword){
+         return res.render('register', {message: '*Паролі не збігаються'});
+        }
       // add database insert into
-    })
+        var hashPassword = bcrypt.hash(password,10);
+        console.log(hashPassword);
+    });
     
     
    // res.send ('Your registered');
    res.render('login');
 
-   
+
 }
