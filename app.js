@@ -4,7 +4,7 @@ const bodyParser=require("body-parser");
 const path = require("path");
 
 
-const port= process.env.PORT || 5000;
+const port= process.env.PORT || 2000;
 const publicDir = path.join(__dirname, './public');
 
 //for dir

@@ -15,18 +15,28 @@ exports.register = (req,res) => {
     
 
     const { fname, lname, email, password, cpassword} = req.body
-
-    pool.query('SELECT email FROM students WHERE email = $1',[email], async (error, results) => {
+    //'SELECT * FROM users WHERE name = $1', 'eboko1@gmail.com')
+    pool.query('SELECT email FROM students WHERE email = $1', [email], (error, results) => {
       if (error) {
         throw error
       }
-      ///response.status(201).send(`User added with ID: ${result.insertId}`)
-      //res.status(201).json({ status: 'success', message: 'Student added.' });
-      if (password !== cpassword){
-          return res.render('register', {message: 'Password do not match'});
-      }
-    
-    })
+      
+      console.log('result:', results.rows);
+      console.log('results length ' , results.rows.length);
 
+      if (results.rows.length > 0){
+        
+        return res.render('register', {message: '*Цей email вже використовується'});
+
+      } 
+       if (password !== cpassword){
+          return res.render('register', {message: '*Паролі не збігаються'});
+      }
+      // add database insert into
+    })
+    
+    
    // res.send ('Your registered');
+   res.render('login');
+
 }
