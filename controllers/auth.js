@@ -33,11 +33,21 @@ exports.register = (req,res) => {
        if (password !== cpassword){
           return res.render('register', {message: '*Паролі не збігаються'});
       }
-      // add database insert into
+     
       let hashPassword = await bcrypt.hash(password, 8);
       console.log(hashPassword);
-    });    
-   // res.send ('Your registered');
-  // res.render('login');
+       // add database insert into
 
+      pool.query('INSERT INTO students (fname, lname, email, password) VALUES ($1,$2,$3,$4)', [fname, lname, email, hashPassword ], (error,results) =>{
+        if (error){
+          throw error;
+        } else {
+          console.log("result: ", results);
+
+         return res.render('login');
+        }
+      })
+  
+      
+    });    
 }
