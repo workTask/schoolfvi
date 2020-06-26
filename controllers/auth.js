@@ -36,9 +36,7 @@ exports.register = (req,res) => {
       // add database insert into
       let hashPassword = await bcrypt.hash(password, 8);
       console.log(hashPassword);
-    });
-    
-    
+    });    
    // res.send ('Your registered');
   // res.render('login');
 
