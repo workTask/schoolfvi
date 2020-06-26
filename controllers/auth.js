@@ -1,5 +1,6 @@
 
-const Pool = require('pg').Pool
+const Pool = require('pg').Pool;
+const bcrypt = require('bcryptjs');
 
 
 const pool = new Pool({
@@ -16,7 +17,7 @@ exports.register = (req,res) => {
 
     const { fname, lname, email, password, cpassword} = req.body
     //'SELECT * FROM users WHERE name = $1', 'eboko1@gmail.com')
-    pool.query('SELECT email FROM students WHERE email = $1', [email], (error, results) => {
+    pool.query('SELECT email FROM students WHERE email = $1', [email], async (error, results) => {
       if (error) {
         throw error
       }
@@ -33,10 +34,12 @@ exports.register = (req,res) => {
           return res.render('register', {message: '*Паролі не збігаються'});
       }
       // add database insert into
-    })
+      let hashPassword = await bcrypt.hash(password, 8);
+      console.log(hashPassword);
+    });
     
     
    // res.send ('Your registered');
-   res.render('login');
+  // res.render('login');
 
 }
