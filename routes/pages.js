@@ -4,7 +4,7 @@ const router = express.Router();
 
 //add pages and use pages
 router.get('/', (req,res) => {
-  res.render('index')
+  res.render('index', {user: 'Vika'})
 });
 router.get('/login', (req,res) => {
     res.render('login')
