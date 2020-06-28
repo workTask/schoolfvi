@@ -14,7 +14,7 @@
     <body>
         <!--navigation bar or menu site-->
         <nav>
-            <h2>Welcome!</h2>
+            <h2>School</h2>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/login">Login</a></li>
@@ -28,14 +28,21 @@
             <div class="card">
                 <div class="card-header">
                     Register form
+                    {{#if message}}
+                          <h6 style="color: orangered;">{{message}}</h6>
+                     {{/if}}
                 </div>
                 <div class="card-body">
                      <!--add form this link https://getbootstrap.com/docs/4.5/components/forms/-->
-                        <form method="POST">
+                        <form  action="auth/register" method="POST">
                             <!--name group-->
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <label for="fname">First name</label>
+                                <input type="text" class="form-control" id="fname" name="fname">
+                            </div>
+                             <div class="form-group">
+                                <label for="lname">Last name</label>
+                                <input type="text" class="form-control" id="lname" name="lname">
                             </div>
                             <!--###########################-->
                             <!--email group-->
@@ -50,12 +57,16 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name ="password">
                             </div>
+                            <div class="form-group">
+                                <label for="password">Confirm</label>
+                                <input type="password" class="form-control" id="cpassword" name ="cpassword">
+                            </div>
                             <!--###########################-->
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
                             </div>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary">Create account</button>
                         </form>
                       <!--###########################-->
                 </div>
