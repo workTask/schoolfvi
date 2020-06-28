@@ -1,10 +1,4 @@
-
-<<<<<<< HEAD
-const Pool = require('pg').Pool
-const jwt = require ('jsonwebtoken');
-=======
 const Pool = require('pg').Pool;
->>>>>>> dev
 const bcrypt = require('bcryptjs');
 
 
@@ -22,11 +16,7 @@ exports.register = (req,res) => {
 
     const { fname, lname, email, password, cpassword} = req.body
     //'SELECT * FROM users WHERE name = $1', 'eboko1@gmail.com')
-<<<<<<< HEAD
-    pool.query('SELECT email FROM students WHERE email = $1', [email], (error, results) => {
-=======
     pool.query('SELECT email FROM students WHERE email = $1', [email], async (error, results) => {
->>>>>>> dev
       if (error) {
         throw error
       }
@@ -35,23 +25,6 @@ exports.register = (req,res) => {
       console.log('results length ' , results.rows.length);
 
       if (results.rows.length > 0){
-<<<<<<< HEAD
-        return res.render('register', {message: '*Цей email вже використовується'}); 
-
-      }else if (password !== cpassword){
-         return res.render('register', {message: '*Паролі не збігаються'});
-        }
-      // add database insert into
-        var hashPassword = bcrypt.hash(password,10);
-        console.log(hashPassword);
-    });
-    
-    
-   // res.send ('Your registered');
-   res.render('login');
-
-
-=======
         
         return res.render('register', {message: '*Цей email вже використовується'});
 
@@ -76,5 +49,4 @@ exports.register = (req,res) => {
   
       
     });    
->>>>>>> dev
 }
