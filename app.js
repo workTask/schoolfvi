@@ -12,6 +12,7 @@ const app = express();
 //
 
 
+
 app.use(express.static(publicDir));
 
 //console.log(__dirname)
