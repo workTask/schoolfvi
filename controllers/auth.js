@@ -10,6 +10,36 @@ const pool = new Pool({
   port: 5432,
 })
 
+exports.login = async (req,res) =>{
+  const {email, password} = req.body
+  try {
+    if (!email || !password){
+      return res.status(400).render('login', {message:'Введіть email і пароль'});
+    }
+    pool.query('SELECT * FROM students WHERE email = $1', [email], async (error, results) => {
+      if (error) {
+        throw error
+      }
+
+
+      console.log('*********',results.rows);
+      console.log('*******************',results.rows[0].password);
+      if(!results || !(await bcrypt.compare(password,results.rows[0].password))){
+        res.status(401).render('login', {message: 'Цей email нe зареєстрований'})
+      } else {
+        const id = results.rows[0].id; 
+        const fname = results.rows[0].fname;
+
+        res.status(200).render('index', {user: ' '+fname});
+      }
+    })
+  
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 exports.register = (req,res) => {
     console.log(req.body);
     
@@ -22,7 +52,7 @@ exports.register = (req,res) => {
       }
       
       console.log('result:', results.rows);
-      console.log('results length ' , results.rows.length);
+      console.log('results length ', results.rows.length);
 
       if (results.rows.length > 0){
         
@@ -41,9 +71,9 @@ exports.register = (req,res) => {
         if (error){
           throw error;
         } else {
-          console.log("result: ", results);
-
-         return res.render('login');
+        //console.log("result: ", results);
+          //{user:''+fname+' '+ lname}
+          return res.render('login');
         }
       })
   

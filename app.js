@@ -33,6 +33,6 @@ app.set('view engine', 'hbs');
 
 
 app.listen(port, (req, res)=>{
- console.log("Server start")
+ console.log(`Server start ${port}`)
 });
 //************************************* */

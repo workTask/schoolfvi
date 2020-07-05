@@ -12,9 +12,9 @@
   },
   "author": "",
   "license": "ISC",
-  "engines":{ 
+  "engines": {
     "node": "10.21.0"
-   }, 
+  },
   "bugs": {
     "url": "https://gitlab.com/eboko1/reqhttptest/issues"
   },
@@ -31,5 +31,5 @@
     "postgresql": "0.0.1"
   },
   "devDependencies": {},
-  "description": ""
+  "description": "My website deployed on heroku, follow the link https://schoolfv.herokuapp.com/"
 }
