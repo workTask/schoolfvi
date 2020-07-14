@@ -1,19 +1,23 @@
-const Pool = require('pg').Pool;
+const {Pool} = require('pg');
 const bcrypt = require('bcryptjs');
 const dotenv = require('dotenv');
 
 
 dotenv.config({path:'./.env'});
 
+let pool;
+if (process.env.DATABASE_URL){
+  pool = new Pool ({connectionString:process.env.DATABASE_URL, ssl:true});
+} else {
+  pool = new Pool({
+    user: 'admin',
+    host: 'localhost',
+    database: 'school',
+    password: '',
+    port: 5432, 
+  })
+}
 
-const pool = new Pool({
-  DATABASE_URL: process.env.DATABASE_URL,
-  user: 'admin',
-  host: process.env.DATABASE_H,
-  database: 'school',
-  password: process.env.DATABASE_PASSWORD,
-  port: process.env.DATABASE_PORT, 
-})
 //auth login
 exports.login = async (req,res) =>{
   const {email, password} = req.body
