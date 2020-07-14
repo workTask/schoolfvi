@@ -1,15 +1,20 @@
 const Pool = require('pg').Pool;
 const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
+
+
+dotenv.config({path:'./.env'});
 
 
 const pool = new Pool({
+  DATABASE_URL: process.env.DATABASE_URL,
   user: 'admin',
-  host: 'localhost',
+  host: process.env.DATABASE_H,
   database: 'school',
-  password: '',
-  port: 5432,
+  password: process.env.DATABASE_PASSWORD,
+  port: process.env.DATABASE_PORT, 
 })
-
+//auth login
 exports.login = async (req,res) =>{
   const {email, password} = req.body
   try {
