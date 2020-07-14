@@ -7,15 +7,26 @@ dotenv.config({path:'./.env'});
 
 let pool;
 if (process.env.DATABASE_URL){
-  pool = new Pool ({connectionString:process.env.DATABASE_URL, ssl:true});
+ try {
+  const URL= 'postgres://oakmdanqvligyj:c72d3dc4c37f03d0693265d83ffe99d03870b92e75bcb7a6a089b8f9582505d7@ec2-34-224-229-81.compute-1.amazonaws.com:5432/da8ckc85anj8mh'
+  pool = new Pool ({connectionString:URL, ssl:true});
+ } catch (error) {
+   console.log(error);
+ }
+
 } else {
-  pool = new Pool({
-    user: 'admin',
-    host: 'localhost',
-    database: 'school',
-    password: '',
-    port: 5432, 
-  })
+  try {
+    pool = new Pool({
+      user: 'admin',
+      host: 'localhost',
+      database: 'school',
+      password: '',
+      port: 5432, 
+    });
+  } catch (error) {
+    console.log(error);
+  }
+ 
 }
 
 //auth login
