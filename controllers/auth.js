@@ -50,7 +50,7 @@ exports.login = async (req,res) =>{
         const id = results.rows[0].id; 
         const fname = results.rows[0].fname;
 
-        res.status(200).render('user_page', {user: ' '+fname});
+        res.status(200).render('userpage', {user: ' '+fname});
       }
     })
   
