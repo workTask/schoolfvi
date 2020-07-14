@@ -24,17 +24,25 @@
         <div class="container mt-4">
             <!--added jumbotron this link https://getbootstrap.com/docs/4.5/components/jumbotron/-->
             <div class="jumbotron">
-                <h1 class="display-4">Welcome {{#if user}}  {{user}}  {{/if}}</h1>
+                <h1 class="display-4" className="text-center mt-5">Welcome {{#if user}}  {{user}}  {{/if}}</h1>
                 <p class="lead">This is a simple </p>
                 <hr class="my-4">
-                <p>Students</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Add</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Edit</a>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Delete</a>
+                <p>Add your students</p>
+                    <form class="d-flex">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <a class="btn btn-primary btn-lg" href="#" role="button">Add</a>
+                    </form>
             </div>
             <!--###########################-->
         </div>
+       <div class="container mt-2">
+             <div class="jumbotron">
+                <hr class="my-4">
+                <p>Students</p>
 
+            </div>
+            <!--###########################-->
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     </body>
