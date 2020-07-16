@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 let pool;
 //if (process.env.DATABASE_URL){
  try {
-  const URL = process.env.HEROKU_DATABASE_URL;
+  const URL = 'postgres://oakmdanqvligyj:c72d3dc4c37f03d0693265d83ffe99d03870b92e75bcb7a6a089b8f9582505d7@ec2-34-224-229-81.compute-1.amazonaws.com:5432/da8ckc85anj8mh';
   
   exports.pool = new Pool ({connectionString:URL, ssl:false});
  } catch (error) {
@@ -43,10 +43,10 @@ exports.login = async (req,res) =>{
       } else {
         const id = results.rows[0].id; 
 
-        const token = jwt.sign({id:id}, process.env.JWT_SECRET,{ expiresIn: process.env.JWT_EXPIRES_IN });
+        const token = jwt.sign({id:id}, 'secretpassword',{ expiresIn: '1d' });
         //console.log('*********token ', token)    
         const cookieOption = {
-                  expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRES*24*60*60),
+                  expires: new Date(Date.now()+'1d'*24*60*60),
           httpOnly: true
        }
         res.cookie('JWT',token,cookieOption);
