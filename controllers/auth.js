@@ -1,30 +1,24 @@
 const {Pool} = require('pg');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
 
 let pool;
 //if (process.env.DATABASE_URL){
- try {
+ //try {
   const URL = 'postgres://oakmdanqvligyj:c72d3dc4c37f03d0693265d83ffe99d03870b92e75bcb7a6a089b8f9582505d7@ec2-34-224-229-81.compute-1.amazonaws.com:5432/da8ckc85anj8mh';
   
-  exports.pool = new Pool ({connectionString:URL, ssl:false});
- } catch (error) {
-   console.log(error);
-}
-//} else {
-  try {
-  // pool = new Pool({
-  // user: process.env.DATABASE_USER,
-  // host: process.env.DATABASE_HOST,
-  //   database: process.env.DATABASE,
-  //    password: process.env.DATABASE_PASSWORD,
-  //    port: process.env.DATABASE_PORT, 
-  //  });
-  } catch (error) {
-    console.log(error);
-  }
+  pool = new Pool ({connectionString:URL, ssl:false});
+ //} catch (error) {
+//   console.log(error);
 //}
+//} else {
+ // try {
+   //pool = new Pool({ user: process.env.DATABASE_USER,host: process.env.DATABASE_HOST,database: process.env.DATABASE,password: process.env.DATABASE_PASSWORD,port: process.env.DATABASE_PORT,  });
+//  } catch (error) {
+//    console.log(error);
+//  }
+
 //auth login
 exports.login = async (req,res) =>{
   const {email, password} = req.body
@@ -43,21 +37,19 @@ exports.login = async (req,res) =>{
       } else {
         const id = results.rows[0].id; 
 
-        const token = jwt.sign({id:id}, 'secretpassword',{ expiresIn: '1d' });
+        //const token = jwt.sign({id:id}, 'secretpassword',{ expiresIn: '1d' });
         //console.log('*********token ', token)    
-        const cookieOption = {
-                  expires: new Date(Date.now()+'1d'*24*60*60),
-          httpOnly: true
-       }
-        res.cookie('JWT',token,cookieOption);
+        //const cookieOption = {expires: new Date(Date.now()+'1d'*24*60*60),httpOnly: true}
+        //res.cookie('JWT',token,cookieOption);
         const fname = results.rows[0].fname;
         res.status(200).render('userpage', {user: ' '+fname});
       }
-    })
+  })
   } catch (error) {
     console.log(error);
   }
 }
+
 exports.register = (req,res) => {
    // console.log(req.body);
     const { fname, lname, email, password, cpassword} = req.body
@@ -90,4 +82,4 @@ exports.register = (req,res) => {
         }
       }) 
     });    
-}
+  }  
