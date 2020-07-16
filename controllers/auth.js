@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 let pool;
 //if (process.env.DATABASE_URL){
  try {
-  const URL = 'postgres://oakmdanqvligyj:c72d3dc4c37f03d0693265d83ffe99d03870b92e75bcb7a6a089b8f9582505d7@ec2-34-224-229-81.compute-1.amazonaws.com:5432/da8ckc85anj8mh';
+  const URL = process.env.HEROKU_DATABASE_URL;
   
   exports.pool = new Pool ({connectionString:URL, ssl:false});
  } catch (error) {
