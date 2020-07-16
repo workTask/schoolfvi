@@ -37,11 +37,11 @@ exports.login = async (req,res) =>{
       } else {
         const id = results.rows[0].id; 
 
-        const token = jwt.sign({id}, 'secretpassword',{ expiresIn: '1d' });
+        //const token = jwt.sign({id}, 'secretpassword',{ expiresIn: '1d' });
         //console.log('*********token ', token)    
-        //+'1d'*24*60*60
-        const cookieOption = {expires: new Date(Date.now()),httpOnly: true}
-        res.cookie('JWT',token,cookieOption);
+        
+       // const cookieOption = {expires: new Date(Date.now()+'1d'*24*60*60),httpOnly: true}
+        //res.cookie('JWT',token,cookieOption);
         const fname = results.rows[0].fname;
         res.status(200).render('userpage', {user: ' '+fname});
       }
