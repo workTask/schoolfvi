@@ -12,7 +12,6 @@ let pool;
  } catch (error) {
    console.log(error);
 }
-
 //} else {
   try {
   // pool = new Pool({
